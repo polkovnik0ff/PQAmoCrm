@@ -14,13 +14,13 @@ amoFn = (method as text, domen as text, login as text, hash as text, limits as n
                 sourceFn = Expression.Evaluate(
                     Text.FromBinary(
                         Binary.Buffer(
-                            Web.Contents("https://raw.githubusercontent.com/ezabitov/PQAmoCrm/master/get"&function&".m")
+                            Web.Contents("https://raw.githubusercontent.com/polkovnik0ff/PQAmoCrm/master/get"&function&".m")
                         )
                     ), #shared)
             in
                 sourceFn,
 
-        generateList = List.Generate(()=>0, each _ < limit, each _ + 500),
+        generateList = List.Generate(()=>0, each _ < limit, each _ + 50000),
         listToTable = Table.FromList(generateList, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
         numberToText = Table.TransformColumnTypes(listToTable,{{"Column1", type text}}),
 
